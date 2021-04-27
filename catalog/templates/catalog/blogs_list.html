@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1 style="color: #4db366;">All blogs</h1>
+
+  {% if blogs_list %}
+  <ul style="color: #4db366;">
+    {% for blogs in blogs_list %}
+      <li>
+        <a style="color: #4db366;" href="{{ blogs.get_absolute_url }}"> {{ blogs.title }} </a> {{ blogs.post_date}} --->
+        <a style="color: #ba5e75" href="{% url 'blogs_list_by_bloggers' blogs.bloggers.pk %}">{{ blogs.bloggers }}</a>
+
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p style="color: #4db366;">There are no Blogs in the library.</p>
+  {% endif %}
+{% endblock %}

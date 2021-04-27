@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<p style="color: #ffa64d;">Post your comment for: <a style="color: #ffa64d;"
+                                                     href="{% url 'blogs-detail' blogs.pk %}">{{blogs.title}}</a></p>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input style="color: #ffa64d;" type="submit" value="Submit"/>
+
+</form>
+{% endblock %}
+
+

@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1 style="color: #4db366;">{{ blogs.title }}</h1>
+
+<p style="color: #4db366;"><strong>Post date</strong> {{ blogs.post_date }}</p>
+<p style="color: #4db366;"><strong>Bloggers:</strong> <a  style="color: #ba5e75;" href="{% url 'blogs_list_by_bloggers' blogs.bloggers.pk %}">{{ blogs.bloggers }}</a></p>
+<p style="color: #4db366;"><strong>Genre:</strong> {{ blogs.genre}}</p>
+<p style="color: #4db366;"><strong>Summary:</strong> {{ blogs.summary }}</p>
+
+
+<div style="margin-left:20px;margin-top:20px">
+    <h4 style="color: #4db366;">Comments</h4>
+
+    {% for comment in blogs.comment_set.all %}
+    <hr>
+    <p>{{comment.bloggers}} ({{comment.post_date}}) - {{comment.description}}</p>
+    {% endfor %}
+    <hr>
+    {% if user.is_authenticated %}
+    <a style="color: #4db366;" href="{% url 'comment' blogs.id %}">Add a new comment</a>
+    {% else %}
+    <p><a style="color: #4db366;" href="{% url 'login'%}?next={{request.path}}">Login</a> to add a new comment</p>
+    {% endif %}
+
+
+</div>
+{% endblock %}

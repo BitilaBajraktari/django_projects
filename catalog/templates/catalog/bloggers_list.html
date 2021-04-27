@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1 style="color: #4db366">All bloggers</h1>
+
+{% if bloggers_list %}
+<ul style="color: #4db366;">
+    {% for bloggers in bloggers_list %}
+    <li>
+        <a style="color: #4db366;" href="{% url 'blogs_list_by_bloggers' bloggers.pk %}">{{ bloggers }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p style="color: #4db366">There are no Bloggers. </p>
+{% endif %}
+{% endblock %}
